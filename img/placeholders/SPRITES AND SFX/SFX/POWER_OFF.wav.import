@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cqhjb1fe6f3x2"
+path="res://.godot/imported/POWER_OFF.wav-b61357cb4bec1361ca841d52403bb04e.sample"
+
+[deps]
+
+source_file="res://img/placeholders/SPRITES AND SFX/SFX/POWER_OFF.wav"
+dest_files=["res://.godot/imported/POWER_OFF.wav-b61357cb4bec1361ca841d52403bb04e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

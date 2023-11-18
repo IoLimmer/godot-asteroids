@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bw1blq0dgv1yd"
+path="res://.godot/imported/START_1.wav-cb3c85accab20408f38f88a18dcf8c9d.sample"
+
+[deps]
+
+source_file="res://img/placeholders/SPRITES AND SFX/SFX/START_1.wav"
+dest_files=["res://.godot/imported/START_1.wav-cb3c85accab20408f38f88a18dcf8c9d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
