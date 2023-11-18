@@ -6,15 +6,27 @@
 [ext_resource type="Script" path="res://scripts/Rock.gd" id="3_wdr3r"]
 [ext_resource type="Texture2D" uid="uid://cboeqyb4gavl1" path="res://img/placeholders/stockimg/potato.png" id="4_vcm8e"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc7rb"]
+size = Vector2(10, 10)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k50yd"]
 radius = 30.2538
 height = 98.7175
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc7rb"]
-size = Vector2(10, 10)
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_kuqb6")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(496, 252)
+scale = Vector2(2, 2)
+script = ExtResource("1_83ocr")
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+rotation = 1.5708
+texture = ExtResource("1_odxlh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_vc7rb")
 
 [node name="Rock" type="Area2D" parent="."]
 position = Vector2(222, 139)
@@ -30,15 +42,3 @@ position = Vector2(-2, 0)
 rotation = 1.67552
 scale = Vector2(0.966348, 0.966348)
 shape = SubResource("CapsuleShape2D_k50yd")
-
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(496, 252)
-scale = Vector2(2, 2)
-script = ExtResource("1_83ocr")
-
-[node name="PlayerSprite" type="Sprite2D" parent="Player"]
-rotation = 1.5708
-texture = ExtResource("1_odxlh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_vc7rb")
