@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3pe0oydjtp63"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_83ocr"]
+[ext_resource type="Script" path="res://scripts/World.gd" id="1_kuqb6"]
+[ext_resource type="Texture2D" uid="uid://1h7ttqr0mge0" path="res://img/placeholders/SPRITES AND SFX/SPRITES/PLAYER.png" id="1_odxlh"]
+[ext_resource type="Script" path="res://scripts/Rock.gd" id="3_wdr3r"]
+[ext_resource type="Texture2D" uid="uid://cboeqyb4gavl1" path="res://img/placeholders/stockimg/potato.png" id="4_vcm8e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc7rb"]
+size = Vector2(10, 10)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k50yd"]
+radius = 33.9168
+height = 102.328
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_kuqb6")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(243, 167)
+scale = Vector2(2, 2)
+script = ExtResource("1_83ocr")
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+rotation = 1.5708
+texture = ExtResource("1_odxlh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_vc7rb")
+
+[node name="Node" type="Node" parent="Player"]
+
+[node name="Rock" type="RigidBody2D" parent="."]
+position = Vector2(99, 84)
+gravity_scale = 0.0
+script = ExtResource("3_wdr3r")
+
+[node name="RockSprite" type="Sprite2D" parent="Rock"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_vcm8e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock"]
+position = Vector2(-0.5, 0)
+rotation = 1.67552
+shape = SubResource("CapsuleShape2D_k50yd")
