@@ -7,7 +7,7 @@ var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_he
 
 func check_child_position(child):
 	var sprite_width = round(child.get_child(0).texture.get_width() * child.scale.x)
-		
+	# if a child is off the side of the screen, wraparound to opposite side		
 	if child.position.x > SCREEN_WIDTH + sprite_width:
 		child.position.x -= SCREEN_WIDTH + sprite_width
 	elif child.position.x < 0 - sprite_width:
