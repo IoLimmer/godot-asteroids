@@ -30,7 +30,6 @@ shape = SubResource("RectangleShape2D_vc7rb")
 
 [node name="Rock" type="CharacterBody2D" parent="."]
 position = Vector2(222, 139)
-scale = Vector2(2.24, 2.24)
 script = ExtResource("3_wdr3r")
 
 [node name="RockSprite" type="Sprite2D" parent="Rock"]

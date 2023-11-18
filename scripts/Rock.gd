@@ -1,11 +1,9 @@
-extends RigidBody2D
+extends CharacterBody2D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+const SPEED = 50
+const LERP = .1
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	self.velocity = lerp(self.velocity, transform.x * Vector2(1, 0) * SPEED, LERP)
+	move_and_slide()
