@@ -10,7 +10,7 @@
 size = Vector2(10, 10)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k50yd"]
-radius = 33.9168
+radius = 31.2483
 height = 102.328
 
 [node name="World" type="Node2D"]
@@ -38,5 +38,6 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_vcm8e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rock"]
+position = Vector2(-2, 0)
 rotation = 1.67552
 shape = SubResource("CapsuleShape2D_k50yd")
