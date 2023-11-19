@@ -23,7 +23,7 @@ func check_spawn_point():
 func _ready():
 	# put player in middle of screen facing top
 	$Player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-	$Player.rotation -= PI/2
+	$Player.rotation += PI/2
 	
 	# generate random positions for rocks, instantiate rocks
 	for i in range(rock_count_on_start):

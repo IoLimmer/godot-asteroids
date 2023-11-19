@@ -1,8 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3pe0oydjtp63"]
+[gd_scene load_steps=8 format=3 uid="uid://d3pe0oydjtp63"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_83ocr"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_kuqb6"]
-[ext_resource type="Texture2D" uid="uid://1h7ttqr0mge0" path="res://img/placeholders/SPRITES AND SFX/SPRITES/PLAYER.png" id="1_odxlh"]
+[ext_resource type="Texture2D" uid="uid://btxporkektk64" path="res://img/proper/chef/chef0.png" id="3_702sy"]
+[ext_resource type="Texture2D" uid="uid://bekvqacvfb35o" path="res://img/proper/chef/chef1.png" id="4_p3qkl"]
+[ext_resource type="Texture2D" uid="uid://caf8oshwiyre4" path="res://img/proper/chef/chef3.png" id="5_gh62k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pt8on"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_702sy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("4_p3qkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_702sy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gh62k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_702sy")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vc7rb"]
 size = Vector2(10, 10)
@@ -18,12 +48,17 @@ polygon = PackedVector2Array(-14, 489, -11, -25, 656, -22, 655, 510, 441, 309, 4
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["wraparound"]]
 position = Vector2(496, 252)
-scale = Vector2(2, 2)
 script = ExtResource("1_83ocr")
 
-[node name="PlayerSprite" type="Sprite2D" parent="Player"]
-rotation = 1.5708
-texture = ExtResource("1_odxlh")
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+visible = false
+texture = ExtResource("3_702sy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_pt8on")
+animation = &"walk"
+frame_progress = 0.993499
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_vc7rb")
