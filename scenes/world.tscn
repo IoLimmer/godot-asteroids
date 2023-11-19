@@ -14,6 +14,8 @@ script = ExtResource("1_kuqb6")
 visible = false
 polygon = PackedVector2Array(-14, 489, -11, -25, 656, -22, 655, 510, 441, 309, 420, 145, 229, 138, 214, 324, 448, 313, 662, 508, -16, 502)
 
+[node name="Rocks" type="Node2D" parent="."]
+
 [node name="Player" type="CharacterBody2D" parent="." groups=["wraparound"]]
 position = Vector2(496, 252)
 scale = Vector2(2, 2)

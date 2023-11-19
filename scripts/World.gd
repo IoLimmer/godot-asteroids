@@ -7,7 +7,7 @@ var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_he
 @onready var objs_to_wraparound = get_tree().get_nodes_in_group("wraparound")
 
 var Rock = preload("res://scenes/objects/rock.tscn")
-var rock_count_on_start = 20
+var rock_count_on_start = 3
 var rocks = []
 
 
@@ -34,7 +34,7 @@ func _ready():
 		
 		var rock = Rock.instantiate()
 		rock.start(rock_position, rock_rotation, rock_scale, rock_speed)
-		add_child(rock)
+		get_node("Rocks").add_child(rock)
 		rocks.append(rock)
 		rock.add_to_group("wraparound")
 
@@ -62,5 +62,11 @@ func _process(delta):
 	# in asteroids, if an object moves off one side of the screen, it reappears on the other
 	var children = get_children()
 	for child in children:
+		print(child.name)
+		print(child.get_children())
+	print()
+	for child in children:
+		print(child)
 		if child in objs_to_wraparound:
 			check_child_position(child)
+	print()
