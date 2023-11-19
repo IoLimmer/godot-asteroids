@@ -10,13 +10,15 @@ const ROTATION_SPEED_LERP = 1
 var rotation_direction = 0.0
 var timeout_shoot = true
 var walking = false
+var string_directions = ["right", "down", "left", "up"]
+var facing_direction = string_directions[1]
 
 var Bullet = preload("res://scenes/objects/bullet.tscn")
 
 
 
 func get_input():
-	rotation_direction = lerp(rotation_direction, Input.get_axis("ui_left", "ui_right"), ROTATION_SPEED_LERP)
+	rotation_direction = lerp(rotation_direction, Input.get_axis("ui_right", "ui_left"), ROTATION_SPEED_LERP)
 	self.velocity = lerp(self.velocity, transform.x * Input.get_axis("ui_down", "ui_up") * SPEED, SPEED_LERP)
 	
 	if Input.is_action_pressed("ui_accept") and timeout_shoot:
@@ -30,14 +32,40 @@ func shoot():
 	b.start($Muzzle.global_position, self.rotation)
 	get_tree().root.add_child(b)
 	b.add_to_group("bullets")
+	
+func animate(delta):
+	# neutralise rotation and position
+	$Anim
+	$AnimatedSprite2D.rotation -= rotation_direction * ROTATION_SPEED * delta
+	
+	# get if walking or not
+	if Input.get_axis("ui_left", "ui_right") != 0.0 or Input.get_axis("ui_down", "ui_up") != 0.0:
+		walking = true
+	else:
+		walking = false
+	
+	# get direction
+	# 90 is down, 180 is left, -90 is up, 0 is right
+	if self.rotation_degrees >= 45 and self.rotation_degrees < 135:
+		facing_direction = string_directions[1]
+	elif self.rotation_degrees >= 135 or self.rotation_degrees < -135:
+		facing_direction = string_directions[2]
+	elif self.rotation_degrees >= -135 and self.rotation_degrees < -45:
+		facing_direction = string_directions[3]
+	elif self.rotation_degrees >= -45 and self.rotation_degrees < 45:
+		facing_direction = string_directions[0]
+	
+	# set animation
+	if walking:
+		$AnimatedSprite2D.play("walk_"+facing_direction)
+	elif !walking:
+		$AnimatedSprite2D.play("idle_"+facing_direction)		
 
 func _physics_process(delta):
 	get_input()
 	self.rotation += rotation_direction * ROTATION_SPEED * delta
-	if rotation_direction != 0 or abs(self.velocity) != Vector2.ZERO:
-		walking = true
-	elif rotation_direction == 0 and abs(self.velocity) == Vector2.ZERO:
-		walking = false
+	print(self.rotation_degrees)
+	animate(delta)
 	move_and_slide()
 
 func _on_timer_timeout():
