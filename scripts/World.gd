@@ -4,7 +4,7 @@ extends Node2D
 var SCREEN_WIDTH = ProjectSettings.get_setting("display/window/size/viewport_width")
 var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_height")
 
-var objs_to_wraparound = ("Player", "Rock")
+var objs_to_wraparound = ["Player", "Rock"]
 
 
 func check_child_position(child):
