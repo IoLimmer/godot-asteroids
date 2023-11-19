@@ -23,6 +23,7 @@ func shoot():
 	var b = Bullet.instantiate()
 	b.start($Muzzle.global_position, self.rotation)
 	get_tree().root.add_child(b)
+	b.add_to_group("bullets")
 
 func _physics_process(delta):
 	get_input()

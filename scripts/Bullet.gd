@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-
 const SPEED = 500
 
 
 func start(_position, _rotation):
+	add_to_group("bullets")
 	# get angle from player
 	self.rotation = _rotation
 	# get location from player

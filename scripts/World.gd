@@ -4,7 +4,7 @@ extends Node2D
 var SCREEN_WIDTH = ProjectSettings.get_setting("display/window/size/viewport_width")
 var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_height")
 
-var objs_to_wraparound = ["Player", "Rock"]
+@onready var objs_to_wraparound = get_tree().get_nodes_in_group("wraparound")
 
 
 func check_child_position(child):
@@ -29,5 +29,5 @@ func _process(delta):
 	# in asteroids, if an object moves off one side of the screen, it reappears on the other
 	var children = get_children()
 	for child in children:
-		if child.name in objs_to_wraparound:
+		if child in objs_to_wraparound:
 			check_child_position(child)
