@@ -1,18 +1,18 @@
 extends Area2D
 
-
-const SPEED = 50
+var SPEED = 50
 const LERP = .1
 
 var velocity = Vector2(0,0)
 
 
-func start(_position, _rotation, _scale):
+func start(_position, _rotation, _scale, _speed):
 	# get angle
 	self.rotation = _rotation
 	# get location
 	self.position = _position
 	self.scale = _scale
+	SPEED = _speed
 
 
 func _process(delta):

@@ -7,9 +7,21 @@ var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_he
 @onready var objs_to_wraparound = get_tree().get_nodes_in_group("wraparound")
 
 var Rock = preload("res://scenes/objects/rock.tscn")
-var rock_count_on_start = 4
+var rock_count_on_start = 20
 var rocks = []
 
+
+func check_spawn_point(other_points):
+	var valid = false
+	var point = Vector2(0,0)
+	while !valid:
+		point = Vector2(randi() % SCREEN_WIDTH, randi() % SCREEN_HEIGHT)
+#		print($"Spawn Zone".polygon)
+#		print(point)
+#		print(Geometry2D.is_point_in_polygon(point, $"Spawn Zone".uv))
+		if Geometry2D.is_point_in_polygon(point, $"Spawn Zone".polygon):
+			valid = true
+	return point
 
 func _ready():
 	# put player in middle of screen facing top
@@ -18,11 +30,13 @@ func _ready():
 	
 	# generate random positions for rocks, instantiate rocks
 	for i in range(rock_count_on_start):
-		var rock_position = Vector2(randi() % SCREEN_WIDTH, randi() % SCREEN_HEIGHT)
+		var rock_position = check_spawn_point(rocks)
 		var rock_rotation = (randi() % 360) * PI / 180
-		var rock_scale = 1
+		var rock_scale = Vector2(1.2, 1.2)
+		var rock_speed = 50
+		
 		var rock = Rock.instantiate()
-		rock.start(rock_position, rock_rotation, rock_scale)
+		rock.start(rock_position, rock_rotation, rock_scale, rock_speed)
 		add_child(rock)
 		rocks.append(rock)
 		rock.add_to_group("wraparound")
