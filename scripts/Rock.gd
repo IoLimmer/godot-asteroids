@@ -16,7 +16,7 @@ func start(_position, _rotation, _scale, _speed, _level):
 	# get location
 	self.position = _position
 	self.scale = _scale
-	SPEED = _speed
+	SPEED = _speed + (randf_range(-1,1) * _speed/3)
 	level = _level
 
 func _process(delta):
@@ -46,3 +46,6 @@ func _on_body_entered(body):
 		# delete self and bullet
 		body.queue_free()
 		queue_free()
+	if body.name == "Player":
+		body.queue_free()
+		
