@@ -11,14 +11,11 @@ var rock_count_on_start = 20
 var rocks = []
 
 
-func check_spawn_point(other_points):
+func check_spawn_point():
 	var valid = false
 	var point = Vector2(0,0)
 	while !valid:
 		point = Vector2(randi() % SCREEN_WIDTH, randi() % SCREEN_HEIGHT)
-#		print($"Spawn Zone".polygon)
-#		print(point)
-#		print(Geometry2D.is_point_in_polygon(point, $"Spawn Zone".uv))
 		if Geometry2D.is_point_in_polygon(point, $"Spawn Zone".polygon):
 			valid = true
 	return point
@@ -30,7 +27,7 @@ func _ready():
 	
 	# generate random positions for rocks, instantiate rocks
 	for i in range(rock_count_on_start):
-		var rock_position = check_spawn_point(rocks)
+		var rock_position = check_spawn_point()
 		var rock_rotation = (randi() % 360) * PI / 180
 		var rock_scale = Vector2(1.2, 1.2)
 		var rock_speed = 50
