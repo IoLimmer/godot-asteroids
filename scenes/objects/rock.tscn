@@ -8,7 +8,6 @@ radius = 30.2538
 height = 98.7175
 
 [node name="Rock" type="Area2D" groups=["wraparound"]]
-scale = Vector2(1.5, 1.5)
 script = ExtResource("1_mhy8a")
 
 [node name="RockSprite" type="Sprite2D" parent="."]

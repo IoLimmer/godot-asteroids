@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 100.0
 const ROTATION_SPEED = 3
 
-const SPEED_LERP = .05
+const SPEED_LERP = .01
 const ROTATION_SPEED_LERP = 1
 
 var rotation_direction = 0.0
@@ -16,7 +16,7 @@ var Bullet = preload("res://scenes/objects/bullet.tscn")
 
 func get_input():
 	rotation_direction = lerp(rotation_direction, Input.get_axis("ui_left", "ui_right"), ROTATION_SPEED_LERP)
-	self.velocity = lerp(self.velocity, transform.x * Input.get_axis("ui_down", "ui_up") * SPEED, SPEED_LERP)
+	self.velocity = lerp(self.velocity, transform.x * Input.get_action_strength("ui_up") * SPEED, SPEED_LERP)
 	
 	if Input.is_action_pressed("ui_accept") and timeout_shoot:
 		$Timer.start()

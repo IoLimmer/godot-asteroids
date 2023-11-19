@@ -7,16 +7,16 @@ const LERP = .1
 var velocity = Vector2(0,0)
 
 
-func start(_position, _rotation):
+func start(_position, _rotation, _scale):
 	# get angle
 	self.rotation = _rotation
 	# get location
 	self.position = _position
-#	velocity = Vector2(SPEED, 0).rotated(self.rotation)
+	self.scale = _scale
 
 
 func _process(delta):
-	velocity = lerp(velocity, Vector2(1, 0) * SPEED * delta, LERP)
+	velocity = lerp(velocity, Vector2(1, 0).rotated(self.rotation) * SPEED * delta, LERP)
 	self.position += velocity
 
 func _on_body_entered(body):

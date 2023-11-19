@@ -19,9 +19,10 @@ func _ready():
 	# generate random positions for rocks, instantiate rocks
 	for i in range(rock_count_on_start):
 		var rock_position = Vector2(randi() % SCREEN_WIDTH, randi() % SCREEN_HEIGHT)
-		var rock_rotation = 0.0
+		var rock_rotation = (randi() % 360) * PI / 180
+		var rock_scale = 1
 		var rock = Rock.instantiate()
-		rock.start(rock_position, rock_rotation)
+		rock.start(rock_position, rock_rotation, rock_scale)
 		add_child(rock)
 		rocks.append(rock)
 		rock.add_to_group("wraparound")
