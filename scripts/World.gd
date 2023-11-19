@@ -60,13 +60,5 @@ func check_child_position(child):
 func _process(delta):
 	objs_to_wraparound = get_tree().get_nodes_in_group("wraparound")
 	# in asteroids, if an object moves off one side of the screen, it reappears on the other
-	var children = get_children()
-	for child in children:
-		print(child.name)
-		print(child.get_children())
-	print()
-	for child in children:
-		print(child)
-		if child in objs_to_wraparound:
-			check_child_position(child)
-	print()
+	for obj in objs_to_wraparound:
+		check_child_position(obj)
