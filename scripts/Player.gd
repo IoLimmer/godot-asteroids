@@ -35,7 +35,7 @@ func shoot():
 	
 func animate(delta):
 	# neutralise rotation and position
-	$Anim
+#	$AnimatedSprite2D.global_position = round($AnimatedSprite2D.global_position)
 	$AnimatedSprite2D.rotation -= rotation_direction * ROTATION_SPEED * delta
 	
 	# get if walking or not
