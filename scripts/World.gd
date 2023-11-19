@@ -30,10 +30,11 @@ func _ready():
 		var rock_position = check_spawn_point()
 		var rock_rotation = (randi() % 360) * PI / 180
 		var rock_scale = Vector2(1.2, 1.2)
-		var rock_speed = 50
+		var rock_speed = 40
+		var rock_level = 0
 		
 		var rock = Rock.instantiate()
-		rock.start(rock_position, rock_rotation, rock_scale, rock_speed)
+		rock.start(rock_position, rock_rotation, rock_scale, rock_speed, rock_level)
 		get_node("Rocks").add_child(rock)
 		rocks.append(rock)
 		rock.add_to_group("wraparound")
@@ -41,20 +42,26 @@ func _ready():
 
 func check_child_position(child):
 	var sprite = child.get_child(0)
-	var sprite_width = Vector2(0,0)
-	sprite_width.x = round(sprite.texture.get_width() * child.scale.x * sprite.scale.x)
-	sprite_width.y = round(sprite.texture.get_height() * child.scale.y * sprite.scale.y)
+	var sprite_dimensions = Vector2(0,0)
+	sprite_dimensions.x = round(sprite.texture.get_width() * child.scale.x * sprite.scale.x)
+	sprite_dimensions.y = round(sprite.texture.get_height() * child.scale.y * sprite.scale.y)
+	
+	# get longer of width and height
+	if sprite_dimensions.x > sprite_dimensions.y:
+		sprite_dimensions.y = sprite_dimensions.x
+	elif sprite_dimensions.y > sprite_dimensions.x:
+		sprite_dimensions.x = sprite_dimensions.y
 	
 	# if a child is off the side of the screen, wraparound to opposite side		
-	if child.position.x > SCREEN_WIDTH + sprite_width.x/2:
-		child.position.x -= SCREEN_WIDTH + sprite_width.x
-	elif child.position.x < 0 - sprite_width.x/2:
-		child.position.x += SCREEN_WIDTH + sprite_width.x
+	if child.position.x > SCREEN_WIDTH + sprite_dimensions.x/2:
+		child.position.x -= SCREEN_WIDTH + sprite_dimensions.x
+	elif child.position.x < 0 - sprite_dimensions.x/2:
+		child.position.x += SCREEN_WIDTH + sprite_dimensions.x
 		
-	if child.position.y > SCREEN_HEIGHT + sprite_width.y/2:
-		child.position.y -= SCREEN_HEIGHT + sprite_width.y
-	elif child.position.y < 0 - sprite_width.y/2:
-		child.position.y += SCREEN_HEIGHT + sprite_width.y
+	if child.position.y > SCREEN_HEIGHT + sprite_dimensions.y/2:
+		child.position.y -= SCREEN_HEIGHT + sprite_dimensions.y
+	elif child.position.y < 0 - sprite_dimensions.y/2:
+		child.position.y += SCREEN_HEIGHT + sprite_dimensions.y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
