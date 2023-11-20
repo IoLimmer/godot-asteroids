@@ -10,8 +10,12 @@ func start(_position, _rotation):
 	# get location from player
 	self.position = _position
 	self.velocity = Vector2(SPEED, 0).rotated(rotation)
+	
+func animate():
+	$Bullet2.rotate(1)
 
 func _physics_process(delta):
+	animate()
 	move_and_slide()
 
 func _on_VisibilityNotifier2D_screen_exited():

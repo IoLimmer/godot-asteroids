@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3pe0oydjtp63"]
+[gd_scene load_steps=18 format=3 uid="uid://d3pe0oydjtp63"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_83ocr"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_kuqb6"]
 [ext_resource type="Texture2D" uid="uid://btxporkektk64" path="res://img/proper/chef/chef0.png" id="3_702sy"]
+[ext_resource type="Texture2D" uid="uid://bi0usvpnqf6qx" path="res://img/proper/chef/knife.png" id="4_fc0dw"]
 [ext_resource type="Texture2D" uid="uid://bekvqacvfb35o" path="res://img/proper/chef/chef1.png" id="4_p3qkl"]
 [ext_resource type="Texture2D" uid="uid://caf8oshwiyre4" path="res://img/proper/chef/chef3.png" id="5_gh62k"]
 [ext_resource type="Texture2D" uid="uid://brsts26ntipb5" path="res://img/proper/chef/chefleft1.png" id="6_ksd54"]
@@ -131,12 +132,19 @@ polygon = PackedVector2Array(-14, 489, -11, -25, 656, -22, 655, 510, 441, 309, 4
 [node name="Rocks" type="Node2D" parent="."]
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["wraparound"]]
-position = Vector2(496, 252)
+position = Vector2(327, 235)
 script = ExtResource("1_83ocr")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 visible = false
 texture = ExtResource("3_702sy")
+
+[node name="knife" type="Sprite2D" parent="Player"]
+visibility_layer = 2
+z_index = 1
+z_as_relative = false
+rotation = 1.5708
+texture = ExtResource("4_fc0dw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 rotation = -1.5708
@@ -147,7 +155,7 @@ animation = &"idle_right"
 shape = SubResource("RectangleShape2D_vc7rb")
 
 [node name="Muzzle" type="Marker2D" parent="Player"]
-position = Vector2(12, 0)
+position = Vector2(19, 0)
 
 [node name="Timer" type="Timer" parent="Player"]
 wait_time = 0.15

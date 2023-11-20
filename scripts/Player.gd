@@ -18,7 +18,7 @@ var Bullet = preload("res://scenes/objects/bullet.tscn")
 
 
 func get_input():
-	rotation_direction = lerp(rotation_direction, Input.get_axis("ui_right", "ui_left"), ROTATION_SPEED_LERP)
+	rotation_direction = lerp(rotation_direction, Input.get_axis("ui_left", "ui_right"), ROTATION_SPEED_LERP)
 	self.velocity = lerp(self.velocity, transform.x * Input.get_axis("ui_down", "ui_up") * SPEED, SPEED_LERP)
 	
 	if Input.is_action_pressed("ui_accept") and timeout_shoot:
@@ -34,6 +34,12 @@ func shoot():
 	b.add_to_group("bullets")
 	
 func animate(delta):
+	$"knife".position = $Muzzle.position
+	if self.rotation_degrees + 180 > 180:
+		# put knife in front of player
+		$knife.z_index = 1
+	else:
+		$knife.z_index = 0
 	# neutralise rotation and position
 #	$AnimatedSprite2D.global_position = round($AnimatedSprite2D.global_position)
 	$AnimatedSprite2D.rotation -= rotation_direction * ROTATION_SPEED * delta
@@ -64,7 +70,7 @@ func animate(delta):
 func _physics_process(delta):
 	get_input()
 	self.rotation += rotation_direction * ROTATION_SPEED * delta
-	print(self.rotation_degrees)
+#	print(self.rotation_degrees)
 	animate(delta)
 	move_and_slide()
 

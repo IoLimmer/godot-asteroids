@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnl7se7b7rei5"]
 
 [ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_33iq8"]
-[ext_resource type="Texture2D" uid="uid://bx8e7b2nyu88k" path="res://img/placeholders/SPRITES AND SFX/SPRITES/BULLET.png" id="2_y667m"]
+[ext_resource type="Texture2D" uid="uid://bn7p702bmvjuf" path="res://img/proper/chef/knife_spin.png" id="2_pjf1i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0j75d"]
-radius = 3.0
+radius = 6.0
 
 [node name="Bullet" type="CharacterBody2D"]
 script = ExtResource("1_33iq8")
@@ -13,4 +13,4 @@ script = ExtResource("1_33iq8")
 shape = SubResource("CircleShape2D_0j75d")
 
 [node name="Bullet2" type="Sprite2D" parent="."]
-texture = ExtResource("2_y667m")
+texture = ExtResource("2_pjf1i")

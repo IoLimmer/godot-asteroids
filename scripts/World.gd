@@ -7,7 +7,7 @@ var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_he
 @onready var objs_to_wraparound = get_tree().get_nodes_in_group("wraparound")
 
 var Rock = preload("res://scenes/objects/rock.tscn")
-var rock_count_on_start = 3
+var rock_count_on_start = 6
 var rocks = []
 
 
@@ -21,10 +21,6 @@ func check_spawn_point():
 	return point
 
 func _ready():
-	# put player in middle of screen facing top
-	$Player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-	$Player.rotation += PI/2
-	
 	# generate random positions for rocks, instantiate rocks
 	for i in range(rock_count_on_start):
 		var rock_position = check_spawn_point()
@@ -38,6 +34,10 @@ func _ready():
 		get_node("Rocks").add_child(rock)
 		rocks.append(rock)
 		rock.add_to_group("wraparound")
+	
+	# put player in middle of screen facing top
+	$Player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+	$Player.rotation += PI/2
 
 
 func check_child_position(child):
