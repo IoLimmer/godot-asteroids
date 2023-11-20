@@ -155,7 +155,7 @@ animation = &"idle_right"
 shape = SubResource("RectangleShape2D_vc7rb")
 
 [node name="Muzzle" type="Marker2D" parent="Player"]
-position = Vector2(19, 0)
+position = Vector2(16, 0)
 
 [node name="Timer" type="Timer" parent="Player"]
 wait_time = 0.15
