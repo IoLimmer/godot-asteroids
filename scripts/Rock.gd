@@ -20,6 +20,7 @@ func start(_position, _rotation, _scale, _speed, _level):
 	level = _level
 
 func _process(delta):
+	animate()
 	velocity = lerp(velocity, Vector2(1, 0).rotated(self.rotation) * SPEED * delta, LERP)
 	self.position += velocity
 	
@@ -37,6 +38,9 @@ func spawn_debris():
 		get_parent().add_child(rock)
 		rocks.append(rock)
 		rock.add_to_group("wraparound")
+
+func animate():
+	$RockShadow.global_position = self.global_position + Vector2(-3, 3)
 
 func _on_body_entered(body):
 	var bullets = get_tree().get_nodes_in_group("bullets")

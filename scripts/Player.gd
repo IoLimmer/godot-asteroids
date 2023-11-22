@@ -40,9 +40,10 @@ func animate(delta):
 		$knife.z_index = 1
 	else:
 		$knife.z_index = 0
+		
 	# neutralise rotation and position
-#	$AnimatedSprite2D.global_position = round($AnimatedSprite2D.global_position)
 	$AnimatedSprite2D.rotation -= rotation_direction * ROTATION_SPEED * delta
+	$Shadow.rotation -= rotation_direction * ROTATION_SPEED * delta
 	
 	# get if walking or not
 	if Input.get_axis("ui_left", "ui_right") != 0.0 or Input.get_axis("ui_down", "ui_up") != 0.0:
