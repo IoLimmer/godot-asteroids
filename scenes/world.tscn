@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d3pe0oydjtp63"]
+[gd_scene load_steps=24 format=3 uid="uid://d3pe0oydjtp63"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_83ocr"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_kuqb6"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dkfb14bftdicj" path="res://img/proper/chef/chefup1.png" id="12_0tkfd"]
 [ext_resource type="Texture2D" uid="uid://bl41fjxcp5hx4" path="res://img/proper/chef/chefup0.png" id="13_5xj32"]
 [ext_resource type="Texture2D" uid="uid://igfnk6anxxb5" path="res://img/proper/chef/chefup2.png" id="14_1dhb5"]
+[ext_resource type="Script" path="res://scenes/HUD.gd" id="19_wucva"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hn6c3"]
 texture = ExtResource("2_v0ugt")
@@ -188,5 +189,15 @@ position = Vector2(16, 0)
 
 [node name="Timer" type="Timer" parent="Player"]
 wait_time = 0.15
+
+[node name="HUD" type="Node2D" parent="."]
+script = ExtResource("19_wucva")
+
+[node name="Score" type="Label" parent="HUD"]
+offset_left = 13.0
+offset_top = 8.0
+offset_right = 53.0
+offset_bottom = 34.0
+text = "0"
 
 [connection signal="timeout" from="Player/Timer" to="Player" method="_on_timer_timeout"]

@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 100.0
 const ROTATION_SPEED = 3
 
-const SPEED_LERP = .1
+const SPEED_LERP = .04
 const ROTATION_SPEED_LERP = 1
 
 var rotation_direction = 0.0

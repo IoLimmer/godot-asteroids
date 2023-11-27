@@ -7,7 +7,7 @@ var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_he
 @onready var objs_to_wraparound = get_tree().get_nodes_in_group("wraparound")
 
 var Rock = preload("res://scenes/objects/rock.tscn")
-var rock_count_on_start = 6
+var rock_count_on_start = 10
 var rocks = []
 
 

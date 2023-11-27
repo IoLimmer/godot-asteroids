@@ -40,7 +40,7 @@ func spawn_debris():
 		rock.add_to_group("wraparound")
 
 func animate():
-	$RockShadow.global_position = self.global_position + Vector2(-3, 3)
+	$RockShadow.global_position = self.global_position + Vector2(-5, 5)
 
 func _on_body_entered(body):
 	var bullets = get_tree().get_nodes_in_group("bullets")
@@ -48,6 +48,7 @@ func _on_body_entered(body):
 		if level < 2:
 			spawn_debris()
 		# delete self and bullet
+		Utils.score = Utils.score + (50 * (self.level+1))
 		body.queue_free()
 		queue_free()
 	if body.name == "Player":

@@ -1,13 +1,14 @@
-extends Node
+extends Node2D
 
 
-var score = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+#	pass
+	$Score.add_theme_color_override("font_color", Color.BLACK)
+#	self.font_color = Color(0, 0, 0, 0);
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	$Score.text = str(Utils.score)
