@@ -8,8 +8,10 @@ const SPEED_LERP = .04
 const ROTATION_SPEED_LERP = 1
 
 var rotation_direction = 0.0
+var forward_backwards = 0.0
 var timeout_shoot = true
 var walking = false
+var dead = false
 var string_directions = ["right", "down", "left", "up"]
 var facing_direction = string_directions[1]
 
@@ -18,10 +20,14 @@ var Bullet = preload("res://scenes/objects/bullet.tscn")
 
 
 func get_input():
-	rotation_direction = lerp(rotation_direction, Input.get_axis("ui_left", "ui_right"), ROTATION_SPEED_LERP)
-	self.velocity = lerp(self.velocity, transform.x * Input.get_axis("ui_down", "ui_up") * SPEED, SPEED_LERP)
+	if !dead:
+		rotation_direction = lerp(rotation_direction, Input.get_axis("ui_left", "ui_right"), ROTATION_SPEED_LERP)
+		forward_backwards = Input.get_axis("ui_down", "ui_up");
+		self.velocity = lerp(self.velocity, transform.x * forward_backwards * SPEED, SPEED_LERP)
+	elif dead:
+		self.velocity = Vector2(0.0, 0.0)
 	
-	if Input.is_action_pressed("ui_accept") and timeout_shoot:
+	if Input.is_action_pressed("ui_accept") and timeout_shoot and !dead:
 		$Timer.start()
 		shoot()
 		timeout_shoot = false
@@ -32,7 +38,13 @@ func shoot():
 	b.start($Muzzle.global_position, self.rotation)
 	get_tree().root.add_child(b)
 	b.add_to_group("bullets")
-	
+
+
+func respawn():
+	print("I'm dead!")
+	dead = true
+
+
 func animate(delta):
 	$"knife".position = $Muzzle.position
 	if self.rotation_degrees + 180 > 180:

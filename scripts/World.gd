@@ -7,11 +7,13 @@ var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_he
 @onready var objs_to_wraparound = get_tree().get_nodes_in_group("wraparound")
 
 var Rock = preload("res://scenes/objects/rock.tscn")
+#@onready var Player = get_node("./Player")
 var rock_count_on_start = 10
 var rocks = []
 
 
 func check_spawn_point():
+#	print(objs_to_wraparound)
 	var valid = false
 	var point = Vector2(0,0)
 	while !valid:
@@ -39,7 +41,7 @@ func _ready():
 	$Player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 	$Player.rotation += PI/2
 
-
+# If a child moves off the side of the screen, they wrap back around
 func check_child_position(child):
 	var sprite = child.get_child(0)
 	var sprite_dimensions = Vector2(0,0)

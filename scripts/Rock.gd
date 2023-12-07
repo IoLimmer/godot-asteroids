@@ -3,14 +3,18 @@ extends Area2D
 var SPEED = 10
 const LERP = .1
 
+var sprite_rotation_speed = 1
+
 var velocity = Vector2(0,0)
 var level = 0
 
 var Rock = preload("res://scenes/objects/rock.tscn")
+#@onready var Player = get_tree().get_nodes_in_group("player")
 var rocks = []
 
 
 func start(_position, _rotation, _scale, _speed, _level):
+#	print(Player)
 	# get angle
 	self.rotation = _rotation
 	# get location
@@ -18,6 +22,8 @@ func start(_position, _rotation, _scale, _speed, _level):
 	self.scale = _scale
 	SPEED = _speed + (randf_range(-1,1) * _speed/3)
 	level = _level
+	var rng = RandomNumberGenerator.new()
+	sprite_rotation_speed = rng.randf_range(1.0, 5.0)
 
 func _process(delta):
 	animate()
@@ -41,6 +47,7 @@ func spawn_debris():
 
 func animate():
 	$RockShadow.global_position = self.global_position + Vector2(-5, 5)
+	
 
 func _on_body_entered(body):
 	var bullets = get_tree().get_nodes_in_group("bullets")
@@ -52,5 +59,6 @@ func _on_body_entered(body):
 		body.queue_free()
 		queue_free()
 	if body.name == "Player":
-		body.queue_free()
+#		body.queue_free()
+		body.respawn()
 		
