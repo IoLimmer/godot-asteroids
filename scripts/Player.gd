@@ -15,6 +15,8 @@ var dead = false
 var string_directions = ["right", "down", "left", "up"]
 var facing_direction = string_directions[1]
 
+var knockback_angle = 0.0
+
 var Bullet = preload("res://scenes/objects/bullet.tscn")
 
 
@@ -23,15 +25,18 @@ func get_input():
 	if !dead:
 		rotation_direction = lerp(rotation_direction, Input.get_axis("ui_left", "ui_right"), ROTATION_SPEED_LERP)
 		forward_backwards = Input.get_axis("ui_down", "ui_up");
-		self.velocity = lerp(self.velocity, transform.x * forward_backwards * SPEED, SPEED_LERP)
+		self.velocity = lerp(self.velocity, self.transform.x * forward_backwards * SPEED, SPEED_LERP)
 	elif dead:
-		self.velocity = Vector2(0.0, 0.0)
+#		self.rotation = knockback_angle
+#		knockback_velocity = lerp(knockback_velocity, transform.x * SPEED, SPEED_LERP)
+		self.velocity = lerp(self.velocity, Vector2(0.0, 0.0), SPEED_LERP)
 	
 	if Input.is_action_pressed("ui_accept") and timeout_shoot and !dead:
 		$Timer.start()
 		shoot()
 		timeout_shoot = false
-	
+
+
 func shoot():
 	# "Muzzle" is a Marker2D placed at the barrel of the gun.
 	var b = Bullet.instantiate()
@@ -40,9 +45,16 @@ func shoot():
 	b.add_to_group("bullets")
 
 
-func respawn():
-	print("I'm dead!")
+func respawn(rock_angle):
 	dead = true
+	print(rock_angle)
+#	print()
+#	knockback_angle = rock_angle
+	# do animation knockback and make player non collidable
+	self.rotation = rock_angle
+	rotation_direction = 0.0
+	self.velocity = self.transform.x * SPEED
+#	$CollisionShape2D.layer
 
 
 func animate(delta):
@@ -75,15 +87,19 @@ func animate(delta):
 		facing_direction = string_directions[0]
 	
 	# set animation
-	if walking:
-		$AnimatedSprite2D.play("walk_"+facing_direction)
-	elif !walking:
-		$AnimatedSprite2D.play("idle_"+facing_direction)		
+	if !dead:
+		if walking:
+			$AnimatedSprite2D.play("walk_"+facing_direction)
+		elif !walking:
+			$AnimatedSprite2D.play("idle_"+facing_direction)
+	else:
+		$AnimatedSprite2D.play("dead")
 
 func _physics_process(delta):
 	get_input()
 	self.rotation += rotation_direction * ROTATION_SPEED * delta
-#	print(self.rotation_degrees)
+#	if dead:
+#		rotation_direction = 0.0
 	animate(delta)
 	move_and_slide()
 

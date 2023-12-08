@@ -58,7 +58,7 @@ func _on_body_entered(body):
 		Utils.score = Utils.score + (50 * (self.level+1))
 		body.queue_free()
 		queue_free()
-	if body.name == "Player":
+	if body.name == "Player" and !body.dead:
 #		body.queue_free()
-		body.respawn()
+		body.respawn(self.rotation)
 		
