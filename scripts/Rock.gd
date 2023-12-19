@@ -50,7 +50,13 @@ func animate():
 	
 
 func _on_body_entered(body):
+#	print(body)
+#	print(body.dead)
+#	try:
+#		prin
 	var bullets = get_tree().get_nodes_in_group("bullets")
+	var players = get_tree().get_nodes_in_group("player")
+	
 	if body in bullets:
 		if level < 2:
 			spawn_debris()
@@ -58,7 +64,7 @@ func _on_body_entered(body):
 		Utils.score = Utils.score + (50 * (self.level+1))
 		body.queue_free()
 		queue_free()
-	if body.name == "Player" and !body.dead:
+	if body in players and !body.dead:
 #		body.queue_free()
-		body.respawn(self.rotation)
+		body.kill(self.rotation)
 		

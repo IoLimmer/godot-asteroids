@@ -30,8 +30,7 @@ func start():
 	self.rotation += PI/2
 	self.find_child("AnimatedSprite2D").play("idle_down")
 	self.add_to_group("wraparound")
-	
-	dead = false
+	self.add_to_group("player")
 
 
 func get_input():
@@ -58,7 +57,7 @@ func shoot():
 	b.add_to_group("bullets")
 
 
-func respawn(rock_angle):
+func kill(rock_angle):
 	dead = true
 	print(rock_angle)
 #	print()
@@ -70,14 +69,15 @@ func respawn(rock_angle):
 	$knife.z_index = 0
 #	$CollisionShape2D.layer
 
+	# wait two seconds then despawn
+	await get_tree().create_timer(2.0).timeout
+	self.queue_free()
+
 	var player = Player.instantiate()
 #	player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 	player.start()
 	get_parent().add_child(player)
 	
-	# wait two seconds then despawn
-	await get_tree().create_timer(4.0).timeout
-	self.queue_free()
 
 
 func animate(delta):
@@ -119,6 +119,7 @@ func animate(delta):
 		$AnimatedSprite2D.play("dead")
 
 func _physics_process(delta):
+	
 	get_input()
 	self.rotation += rotation_direction * ROTATION_SPEED * delta
 #	if dead:

@@ -43,7 +43,6 @@ func _ready():
 	var player = Player.instantiate()
 	player.start()
 	self.add_child(player)
-	player.add_to_group("wraparound")
 #	$Player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 #	$Player.rotation += PI/2
 
