@@ -7,6 +7,9 @@ const ROTATION_SPEED = 3
 const SPEED_LERP = .04
 const ROTATION_SPEED_LERP = 1
 
+var SCREEN_WIDTH = ProjectSettings.get_setting("display/window/size/viewport_width")
+var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_height")
+
 var rotation_direction = 0.0
 var forward_backwards = 0.0
 var timeout_shoot = true
@@ -18,7 +21,17 @@ var facing_direction = string_directions[1]
 var knockback_angle = 0.0
 
 var Bullet = preload("res://scenes/objects/bullet.tscn")
+var Player = preload("res://scenes/objects/player.tscn")
 
+
+
+func start():
+	self.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+	self.rotation += PI/2
+	self.find_child("AnimatedSprite2D").play("idle_down")
+	self.add_to_group("wraparound")
+	
+	dead = false
 
 
 func get_input():
@@ -56,6 +69,15 @@ func respawn(rock_angle):
 	self.velocity = self.transform.x * SPEED
 	$knife.z_index = 0
 #	$CollisionShape2D.layer
+
+	var player = Player.instantiate()
+#	player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+	player.start()
+	get_parent().add_child(player)
+	
+	# wait two seconds then despawn
+	await get_tree().create_timer(4.0).timeout
+	self.queue_free()
 
 
 func animate(delta):

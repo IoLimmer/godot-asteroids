@@ -11,6 +11,8 @@ var Rock = preload("res://scenes/objects/rock.tscn")
 var rock_count_on_start = 10
 var rocks = []
 
+var Player = preload("res://scenes/objects/player.tscn")
+
 
 func check_spawn_point():
 #	print(objs_to_wraparound)
@@ -38,8 +40,12 @@ func _ready():
 		rock.add_to_group("wraparound")
 	
 	# put player in middle of screen facing top
-	$Player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-	$Player.rotation += PI/2
+	var player = Player.instantiate()
+	player.start()
+	self.add_child(player)
+	player.add_to_group("wraparound")
+#	$Player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+#	$Player.rotation += PI/2
 
 # If a child moves off the side of the screen, they wrap back around
 func check_child_position(child):

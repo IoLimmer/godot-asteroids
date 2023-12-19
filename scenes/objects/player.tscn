@@ -1,0 +1,170 @@
+[gd_scene load_steps=20 format=3 uid="uid://thd8bl6eakes"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_hnk77"]
+[ext_resource type="Texture2D" uid="uid://btxporkektk64" path="res://img/proper/chef/chef0.png" id="2_ij1ek"]
+[ext_resource type="Texture2D" uid="uid://bi0usvpnqf6qx" path="res://img/proper/chef/knife.png" id="3_imcyx"]
+[ext_resource type="Texture2D" uid="uid://bcfgxt3ndwupv" path="res://img/proper/chef/chefshadow.png" id="4_vhkwg"]
+[ext_resource type="Texture2D" uid="uid://dubtqg8msp3mw" path="res://img/proper/chef/chefdead.png" id="5_hwwkf"]
+[ext_resource type="Texture2D" uid="uid://dgtcq8q40p5pw" path="res://img/proper/chef/chefleft0.png" id="6_ja3ax"]
+[ext_resource type="Texture2D" uid="uid://015tbvru1xqf" path="res://img/proper/chef/chefright0.png" id="7_tkhsb"]
+[ext_resource type="Texture2D" uid="uid://bl41fjxcp5hx4" path="res://img/proper/chef/chefup0.png" id="8_cof0g"]
+[ext_resource type="Texture2D" uid="uid://bekvqacvfb35o" path="res://img/proper/chef/chef1.png" id="9_pihs7"]
+[ext_resource type="Texture2D" uid="uid://caf8oshwiyre4" path="res://img/proper/chef/chef3.png" id="10_o15w1"]
+[ext_resource type="Texture2D" uid="uid://brsts26ntipb5" path="res://img/proper/chef/chefleft1.png" id="11_dkt11"]
+[ext_resource type="Texture2D" uid="uid://6bltdh7n0vy" path="res://img/proper/chef/chefleft2.png" id="12_yguj6"]
+[ext_resource type="Texture2D" uid="uid://d1oi8b542v33l" path="res://img/proper/chef/chefright1.png" id="13_e6v7x"]
+[ext_resource type="Texture2D" uid="uid://df2efcoxv3ukv" path="res://img/proper/chef/chefright2.png" id="14_n2gav"]
+[ext_resource type="Texture2D" uid="uid://dkfb14bftdicj" path="res://img/proper/chef/chefup1.png" id="15_fftbs"]
+[ext_resource type="Texture2D" uid="uid://igfnk6anxxb5" path="res://img/proper/chef/chefup2.png" id="16_r2kj1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yupbi"]
+atlas = ExtResource("5_hwwkf")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pt8on"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yupbi")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ij1ek")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ja3ax")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_tkhsb")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_cof0g")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("9_pihs7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ij1ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_o15w1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ij1ek")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("11_dkt11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ja3ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_yguj6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ja3ax")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("13_e6v7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tkhsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_n2gav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tkhsb")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("15_fftbs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cof0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_r2kj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cof0g")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc7rb"]
+size = Vector2(10, 10)
+
+[node name="Player" type="CharacterBody2D" groups=["player", "wraparound"]]
+position = Vector2(327, 235)
+script = ExtResource("1_hnk77")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_ij1ek")
+
+[node name="knife" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
+rotation = 1.5708
+texture = ExtResource("3_imcyx")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("4_vhkwg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_pt8on")
+animation = &"dead"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vc7rb")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

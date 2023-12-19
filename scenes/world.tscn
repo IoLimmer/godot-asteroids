@@ -1,24 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://d3pe0oydjtp63"]
+[gd_scene load_steps=8 format=3 uid="uid://d3pe0oydjtp63"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="1_83ocr"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_kuqb6"]
 [ext_resource type="Texture2D" uid="uid://bbm5vy1g3ftib" path="res://img/proper/floor/floor0.png" id="2_v0ugt"]
-[ext_resource type="Texture2D" uid="uid://btxporkektk64" path="res://img/proper/chef/chef0.png" id="3_702sy"]
 [ext_resource type="Texture2D" uid="uid://dgmdg4qi6asdb" path="res://img/proper/floor/floorFX.png" id="3_kctn4"]
-[ext_resource type="Texture2D" uid="uid://bi0usvpnqf6qx" path="res://img/proper/chef/knife.png" id="4_fc0dw"]
-[ext_resource type="Texture2D" uid="uid://bekvqacvfb35o" path="res://img/proper/chef/chef1.png" id="4_p3qkl"]
-[ext_resource type="Texture2D" uid="uid://bcfgxt3ndwupv" path="res://img/proper/chef/chefshadow.png" id="5_ebctq"]
-[ext_resource type="Texture2D" uid="uid://caf8oshwiyre4" path="res://img/proper/chef/chef3.png" id="5_gh62k"]
-[ext_resource type="Texture2D" uid="uid://brsts26ntipb5" path="res://img/proper/chef/chefleft1.png" id="6_ksd54"]
-[ext_resource type="Texture2D" uid="uid://dgtcq8q40p5pw" path="res://img/proper/chef/chefleft0.png" id="7_6ykf3"]
-[ext_resource type="Texture2D" uid="uid://dubtqg8msp3mw" path="res://img/proper/chef/chefdead.png" id="8_q6ydo"]
-[ext_resource type="Texture2D" uid="uid://6bltdh7n0vy" path="res://img/proper/chef/chefleft2.png" id="8_wtsul"]
-[ext_resource type="Texture2D" uid="uid://d1oi8b542v33l" path="res://img/proper/chef/chefright1.png" id="9_jd787"]
-[ext_resource type="Texture2D" uid="uid://015tbvru1xqf" path="res://img/proper/chef/chefright0.png" id="10_t7200"]
-[ext_resource type="Texture2D" uid="uid://df2efcoxv3ukv" path="res://img/proper/chef/chefright2.png" id="11_ml4b2"]
-[ext_resource type="Texture2D" uid="uid://dkfb14bftdicj" path="res://img/proper/chef/chefup1.png" id="12_0tkfd"]
-[ext_resource type="Texture2D" uid="uid://bl41fjxcp5hx4" path="res://img/proper/chef/chefup0.png" id="13_5xj32"]
-[ext_resource type="Texture2D" uid="uid://igfnk6anxxb5" path="res://img/proper/chef/chefup2.png" id="14_1dhb5"]
 [ext_resource type="Script" path="res://scenes/HUD.gd" id="19_wucva"]
 [ext_resource type="FontFile" uid="uid://di6rq1bi33des" path="res://font/m5x7.ttf" id="20_fpet7"]
 
@@ -31,124 +15,6 @@ texture = ExtResource("2_v0ugt")
 
 [sub_resource type="TileSet" id="TileSet_lpgx2"]
 sources/0 = SubResource("TileSetAtlasSource_hn6c3")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yupbi"]
-atlas = ExtResource("8_q6ydo")
-region = Rect2(0, 0, 36, 36)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pt8on"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yupbi")
-}],
-"loop": true,
-"name": &"dead",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_702sy")
-}],
-"loop": true,
-"name": &"idle_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_6ykf3")
-}],
-"loop": true,
-"name": &"idle_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_t7200")
-}],
-"loop": true,
-"name": &"idle_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("13_5xj32")
-}],
-"loop": true,
-"name": &"idle_up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.2,
-"texture": ExtResource("4_p3qkl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_702sy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_gh62k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_702sy")
-}],
-"loop": true,
-"name": &"walk_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.2,
-"texture": ExtResource("6_ksd54")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_6ykf3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_wtsul")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_6ykf3")
-}],
-"loop": true,
-"name": &"walk_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.2,
-"texture": ExtResource("9_jd787")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_t7200")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_ml4b2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_t7200")
-}],
-"loop": true,
-"name": &"walk_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.2,
-"texture": ExtResource("12_0tkfd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_5xj32")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_1dhb5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_5xj32")
-}],
-"loop": true,
-"name": &"walk_up",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc7rb"]
-size = Vector2(10, 10)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_kuqb6")
@@ -168,38 +34,6 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 1, 65536, 65536, 0, 1, 0, 1, 6553
 position = Vector2(320, 240)
 scale = Vector2(1.02, 1.02)
 texture = ExtResource("3_kctn4")
-
-[node name="Player" type="CharacterBody2D" parent="." groups=["player", "wraparound"]]
-position = Vector2(327, 235)
-script = ExtResource("1_83ocr")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-visible = false
-texture = ExtResource("3_702sy")
-
-[node name="knife" type="Sprite2D" parent="Player"]
-z_index = 1
-z_as_relative = false
-rotation = 1.5708
-texture = ExtResource("4_fc0dw")
-
-[node name="Shadow" type="Sprite2D" parent="Player"]
-rotation = -1.5708
-texture = ExtResource("5_ebctq")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-rotation = -1.5708
-sprite_frames = SubResource("SpriteFrames_pt8on")
-animation = &"dead"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_vc7rb")
-
-[node name="Muzzle" type="Marker2D" parent="Player"]
-position = Vector2(16, 0)
-
-[node name="Timer" type="Timer" parent="Player"]
-wait_time = 0.15
 
 [node name="Rocks" type="Node2D" parent="."]
 
@@ -222,5 +56,3 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = ExtResource("20_fpet7")
 text = "0"
-
-[connection signal="timeout" from="Player/Timer" to="Player" method="_on_timer_timeout"]
