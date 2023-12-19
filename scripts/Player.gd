@@ -54,6 +54,7 @@ func respawn(rock_angle):
 	self.rotation = rock_angle
 	rotation_direction = 0.0
 	self.velocity = self.transform.x * SPEED
+	$knife.z_index = 0
 #	$CollisionShape2D.layer
 
 

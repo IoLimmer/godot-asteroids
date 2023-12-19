@@ -178,7 +178,6 @@ visible = false
 texture = ExtResource("3_702sy")
 
 [node name="knife" type="Sprite2D" parent="Player"]
-visibility_layer = 2
 z_index = 1
 z_as_relative = false
 rotation = 1.5708
