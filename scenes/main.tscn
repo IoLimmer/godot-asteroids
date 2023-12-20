@@ -32,3 +32,4 @@ position = Vector2(-211, 127)
 texture = ExtResource("4_57okf")
 
 [connection signal="pressed" from="BG/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="BG/Controls" to="." method="_on_controls_pressed"]

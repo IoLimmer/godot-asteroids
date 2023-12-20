@@ -72,11 +72,14 @@ func kill(rock_angle):
 	# wait two seconds then despawn
 	await get_tree().create_timer(2.0).timeout
 	self.queue_free()
+	Utils.lives -= 1
+	print(Utils.lives)
 
-	var player = Player.instantiate()
-#	player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-	player.start()
-	get_parent().add_child(player)
+	if Utils.lives > 0:
+		var player = Player.instantiate()
+	#	player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+		player.start()
+		get_parent().add_child(player)
 	
 
 
