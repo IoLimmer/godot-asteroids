@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3pe0oydjtp63"]
+[gd_scene load_steps=10 format=3 uid="uid://d3pe0oydjtp63"]
 
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_kuqb6"]
 [ext_resource type="Texture2D" uid="uid://bbm5vy1g3ftib" path="res://img/proper/floor/floor0.png" id="2_v0ugt"]
 [ext_resource type="Texture2D" uid="uid://dgmdg4qi6asdb" path="res://img/proper/floor/floorFX.png" id="3_kctn4"]
+[ext_resource type="Script" path="res://scenes/LivesWrapper.gd" id="6_my7j3"]
+[ext_resource type="Texture2D" uid="uid://btxporkektk64" path="res://img/proper/chef/chef0.png" id="6_xne7m"]
 [ext_resource type="Script" path="res://scenes/HUD.gd" id="19_wucva"]
 [ext_resource type="FontFile" uid="uid://di6rq1bi33des" path="res://font/m5x7.ttf" id="20_fpet7"]
 
@@ -56,3 +58,18 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = ExtResource("20_fpet7")
 text = "0"
+
+[node name="LivesWrapper" type="Node2D" parent="HUD"]
+position = Vector2(616, 26)
+script = ExtResource("6_my7j3")
+
+[node name="life1" type="Sprite2D" parent="HUD/LivesWrapper"]
+position = Vector2(-50, 0)
+texture = ExtResource("6_xne7m")
+
+[node name="life2" type="Sprite2D" parent="HUD/LivesWrapper"]
+position = Vector2(-25, 0)
+texture = ExtResource("6_xne7m")
+
+[node name="life3" type="Sprite2D" parent="HUD/LivesWrapper"]
+texture = ExtResource("6_xne7m")
