@@ -90,6 +90,8 @@ func animate(delta):
 		$knife.z_index = 1
 	else:
 		$knife.z_index = 0
+	if dead:
+		$knife.z_index = 0
 		
 	# neutralise rotation and position
 	$AnimatedSprite2D.rotation -= rotation_direction * ROTATION_SPEED * delta

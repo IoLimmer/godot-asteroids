@@ -13,6 +13,9 @@ var rocks = []
 
 var Player = preload("res://scenes/objects/player.tscn")
 
+@onready var game_over_layer = get_node("GAMEOVER")
+@onready var player_node = get_node("Player")
+
 
 func check_spawn_point():
 #	print(objs_to_wraparound)
@@ -25,6 +28,7 @@ func check_spawn_point():
 	return point
 
 func _ready():
+	game_over_layer.visible = false
 	# generate random positions for rocks, instantiate rocks
 	for i in range(rock_count_on_start):
 		var rock_position = check_spawn_point()
@@ -42,7 +46,7 @@ func _ready():
 	# put player in middle of screen facing top
 	var player = Player.instantiate()
 	player.start()
-	self.add_child(player)
+	player_node.add_child(player)
 #	$Player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 #	$Player.rotation += PI/2
 
@@ -72,7 +76,10 @@ func check_child_position(child):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	objs_to_wraparound = get_tree().get_nodes_in_group("wraparound")
-	# in asteroids, if an object moves off one side of the screen, it reappears on the other
-	for obj in objs_to_wraparound:
-		check_child_position(obj)
+	if Utils.running:
+		objs_to_wraparound = get_tree().get_nodes_in_group("wraparound")
+		# in asteroids, if an object moves off one side of the screen, it reappears on the other
+		for obj in objs_to_wraparound:
+			check_child_position(obj)
+	else:
+		game_over_layer.visible = true

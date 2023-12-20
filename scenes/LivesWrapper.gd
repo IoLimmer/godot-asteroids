@@ -11,10 +11,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-	for i in range(Utils.lives-1):
-		sprites[i].set_visible(true)
-		
 	if Utils.lives < 3:
 		for i in range(2, Utils.lives-1, -1):
 			sprites[i].set_visible(false)

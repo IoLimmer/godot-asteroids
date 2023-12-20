@@ -26,9 +26,10 @@ func start(_position, _rotation, _scale, _speed, _level):
 	sprite_rotation_speed = rng.randf_range(1.0, 5.0)
 
 func _process(delta):
-	animate()
-	velocity = lerp(velocity, Vector2(1, 0).rotated(self.rotation) * SPEED * delta, LERP)
-	self.position += velocity
+	if Utils.running:
+		animate()
+		velocity = lerp(velocity, Vector2(1, 0).rotated(self.rotation) * SPEED * delta, LERP)
+		self.position += velocity
 	
 func spawn_debris():
 	# instantiate two new smaller rocks
