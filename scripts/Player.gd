@@ -21,7 +21,7 @@ var facing_direction = string_directions[1]
 var knockback_angle = 0.0
 
 var Bullet = preload("res://scenes/objects/bullet.tscn")
-var Player = preload("res://scenes/objects/player.tscn")
+#var Player = preload("res://scenes/objects/player.tscn")
 
 
 
@@ -76,7 +76,8 @@ func kill(rock_angle):
 
 	if Utils.lives > 0:
 		self.queue_free()
-		var player = Player.instantiate()
+#		var player = Player.instantiate()
+		var player = self.duplicate()
 	#	player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 		player.start()
 		get_parent().add_child(player)
