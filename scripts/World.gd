@@ -83,3 +83,12 @@ func _process(delta):
 			check_child_position(obj)
 	else:
 		game_over_layer.visible = true
+
+
+func _on_restart_pressed():
+#	if !Utils.running:
+	Utils.reset()
+#	Utils.running = true
+	get_tree().reload_current_scene()
+	$GAMEOVER.visible = false
+		
