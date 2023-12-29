@@ -27,7 +27,8 @@ var Bullet = preload("res://scenes/objects/bullet.tscn")
 
 func start():
 	self.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-	self.rotation += PI/2
+	self.rotation_degrees = 90
+	$AnimatedSprite2D.rotation_degrees = -90
 	self.find_child("AnimatedSprite2D").play("idle_down")
 	self.add_to_group("wraparound")
 	self.add_to_group("player")
@@ -125,13 +126,15 @@ func animate(delta):
 		$AnimatedSprite2D.play("dead")
 
 func _physics_process(delta):
-	
 	get_input()
 	self.rotation += rotation_direction * ROTATION_SPEED * delta
 #	if dead:
 #		rotation_direction = 0.0
 	animate(delta)
 	move_and_slide()
+	
+	print(self.rotation_degrees)
+	
 
 func _on_timer_timeout():
 	timeout_shoot = true
