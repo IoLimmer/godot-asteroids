@@ -45,7 +45,7 @@ func _ready():
 	
 	# put player in middle of screen facing top
 	var player = Player.instantiate()
-	player.start()
+	player.start(false, get_parent())
 	player_node.add_child(player)
 #	$Player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 #	$Player.rotation += PI/2

@@ -65,7 +65,7 @@ func _on_body_entered(body):
 		Utils.score = Utils.score + (50 * (self.level+1))
 		body.queue_free()
 		queue_free()
-	if body in players and !body.dead:
+	if body in players and !body.dead and !body.invincible:
 #		body.queue_free()
 		body.kill(self.rotation)
 		

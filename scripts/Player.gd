@@ -12,9 +12,12 @@ var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_he
 
 var rotation_direction = 0.0
 var forward_backwards = 0.0
+
 var timeout_shoot = true
 var walking = false
 var dead = false
+var invincible = false
+
 var string_directions = ["right", "down", "left", "up"]
 var facing_direction = string_directions[1]
 
@@ -25,13 +28,24 @@ var Bullet = preload("res://scenes/objects/bullet.tscn")
 
 
 
-func start():
+func start(invincible_setter, parent):
+	
+	invincible = invincible_setter
 	self.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 	self.rotation_degrees = 90
 	$AnimatedSprite2D.rotation_degrees = -90
+	$Shadow.rotation_degrees = -90
 	self.find_child("AnimatedSprite2D").play("idle_down")
 	self.add_to_group("wraparound")
 	self.add_to_group("player")
+	
+	parent.add_child(self)
+#	print("RESPAWN")
+#	print("invincible = ", invincible)
+##	print(get_tree())
+##	print()
+	await get_tree().create_timer(3.0).timeout
+	invincible = false
 
 
 func get_input():
@@ -60,33 +74,34 @@ func shoot():
 
 func kill(rock_angle):
 	dead = true
-	print(rock_angle)
+#	print(rock_angle)
 #	print()
 #	knockback_angle = rock_angle
 	# do animation knockback and make player non collidable
 	self.rotation = rock_angle
 	rotation_direction = 0.0
 	self.velocity = self.transform.x * SPEED
-	$knife.z_index = 0
 #	$CollisionShape2D.layer
 
 	# wait two seconds then despawn
+	
+#	print(get_tree())
+#	print()
 	await get_tree().create_timer(2.0).timeout
 	Utils.lives -= 1
-	print(Utils.lives)
+#	print(Utils.lives)
 
 	if Utils.lives > 0:
 		self.queue_free()
 #		var player = Player.instantiate()
 		var player = self.duplicate()
 	#	player.position = Vector2(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-		player.start()
-		get_parent().add_child(player)
+		player.start(true, get_parent())
 	
 
 
 func animate(delta):
-	$"knife".position = $Muzzle.position
+	$knife.position = $Muzzle.position
 	if self.rotation_degrees + 180 > 180:
 		# put knife in front of player
 		$knife.z_index = 1
@@ -124,8 +139,22 @@ func animate(delta):
 			$AnimatedSprite2D.play("idle_"+facing_direction)
 	else:
 		$AnimatedSprite2D.play("dead")
+		$knife.z_index = 0
+	
+	if invincible:
+		$AnimatedSprite2D.z_index = 1
+		$AnimatedSprite2D.modulate.a = 0.5
+		$knife.z_index += 1
+		$knife.modulate.a = 0.5
+	else:
+		$AnimatedSprite2D.modulate.a = 1
+		$knife.modulate.a = 1
+		
+
 
 func _physics_process(delta):
+	
+#	print("invincible = ", invincible)
 	get_input()
 	self.rotation += rotation_direction * ROTATION_SPEED * delta
 #	if dead:
@@ -133,8 +162,8 @@ func _physics_process(delta):
 	animate(delta)
 	move_and_slide()
 	
-	print(self.rotation_degrees)
-	
+#	print(self.rotation_degrees)
+
 
 func _on_timer_timeout():
 	timeout_shoot = true
