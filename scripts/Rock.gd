@@ -37,7 +37,7 @@ func spawn_debris():
 	for i in range(2):
 		var rock_position = self.position
 		var rock_rotation = (randi() % 360) * PI / 180
-		var rock_scale = self.scale / 1.5
+		var rock_scale = self.scale / 1.8
 #		var rock_scale = self.scale
 		var rock_speed = SPEED * 1.5
 		var rock_level = level + 1

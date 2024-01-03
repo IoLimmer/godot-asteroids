@@ -102,7 +102,7 @@ func kill(rock_angle):
 
 func animate(delta):
 	$knife.position = $Muzzle.position
-	if self.rotation_degrees + 180 > 180:
+	if self.rotation_degrees + 180 > 180 and !dead:
 		# put knife in front of player
 		$knife.z_index = 1
 	else:
@@ -149,6 +149,7 @@ func animate(delta):
 	else:
 		$AnimatedSprite2D.modulate.a = 1
 		$knife.modulate.a = 1
+#		$knife.z_index = 0
 		
 
 

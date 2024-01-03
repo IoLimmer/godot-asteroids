@@ -71,14 +71,14 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_ehipe")
 
 [node name="RockSprite" type="Sprite2D" parent="."]
-visible = false
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_wuqjj")
 
 [node name="RockAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_gk0mn")
-animation = &"0_1"
+animation = &"1_0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0)
