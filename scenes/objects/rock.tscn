@@ -1,8 +1,63 @@
-[gd_scene load_steps=5 format=3 uid="uid://k4kpjnxqmhhq"]
+[gd_scene load_steps=10 format=3 uid="uid://k4kpjnxqmhhq"]
 
 [ext_resource type="Script" path="res://scripts/Rock.gd" id="1_mhy8a"]
 [ext_resource type="Texture2D" uid="uid://cpl6i1y64kp2q" path="res://img/placeholders/stockimg/potatoshadow.png" id="2_ehipe"]
 [ext_resource type="Texture2D" uid="uid://cboeqyb4gavl1" path="res://img/placeholders/stockimg/potato.png" id="2_wuqjj"]
+[ext_resource type="Texture2D" uid="uid://byvh61ec76n7a" path="res://img/placeholders/stockimg/potato2_1.png" id="4_doejh"]
+[ext_resource type="Texture2D" uid="uid://cpngqhs6mgybl" path="res://img/placeholders/stockimg/potato2_2.png" id="5_unrq3"]
+[ext_resource type="Texture2D" uid="uid://kvaer407ijdr" path="res://img/placeholders/stockimg/potato3_1.png" id="6_pge5o"]
+[ext_resource type="Texture2D" uid="uid://myuh6kqtowk6" path="res://img/placeholders/stockimg/potato3_2.png" id="7_sbwdj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gk0mn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wuqjj")
+}],
+"loop": true,
+"name": &"0_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wuqjj")
+}],
+"loop": true,
+"name": &"0_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_doejh")
+}],
+"loop": true,
+"name": &"1_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_unrq3")
+}],
+"loop": true,
+"name": &"1_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pge5o")
+}],
+"loop": true,
+"name": &"2_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_sbwdj")
+}],
+"loop": true,
+"name": &"2_1",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k50yd"]
 radius = 30.2538
@@ -16,8 +71,14 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_ehipe")
 
 [node name="RockSprite" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_wuqjj")
+
+[node name="RockAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_gk0mn")
+animation = &"0_1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0)

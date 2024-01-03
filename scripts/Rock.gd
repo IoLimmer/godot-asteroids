@@ -7,6 +7,7 @@ var sprite_rotation_speed = 1
 
 var velocity = Vector2(0,0)
 var level = 0
+var sprite_random = 0
 
 var Rock = preload("res://scenes/objects/rock.tscn")
 #@onready var Player = get_tree().get_nodes_in_group("player")
@@ -36,7 +37,8 @@ func spawn_debris():
 	for i in range(2):
 		var rock_position = self.position
 		var rock_rotation = (randi() % 360) * PI / 180
-		var rock_scale = self.scale / 2
+		var rock_scale = self.scale / 1.5
+#		var rock_scale = self.scale
 		var rock_speed = SPEED * 1.5
 		var rock_level = level + 1
 		
@@ -48,6 +50,7 @@ func spawn_debris():
 
 func animate():
 	$RockShadow.global_position = self.global_position + Vector2(-5, 5)
+	$RockAnimatedSprite2D.play(str(level) + "_" + str(sprite_random))
 	
 
 func _on_body_entered(body):
