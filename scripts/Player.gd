@@ -143,7 +143,11 @@ func animate(delta):
 		$AnimatedSprite2D.play("dead")
 		$knife.z_index = 0
 	
-	if invincible:
+	if !Utils.running:
+		$AnimatedSprite2D.modulate.a = 1.0
+		$knife.modulate.a = 1.0
+#		$Shadow.modulate.a = 1.0
+	elif invincible:
 		$AnimatedSprite2D.z_index = 1
 		$AnimatedSprite2D.modulate.a = 0.5
 		$knife.z_index += 1
@@ -151,8 +155,16 @@ func animate(delta):
 	else:
 		$AnimatedSprite2D.z_index = 0
 		$AnimatedSprite2D.modulate.a = 1
-		$knife.modulate.a = 1
+		$knife.modulate.a = 1		
+		$Shadow.modulate.a = 1.0
 #		$knife.z_index = 0
+
+
+#	if !Utils.running:
+#		print("$AnimatedSprite2D.z_index = ", $AnimatedSprite2D.z_index)
+#		print("$knife.z_index = ", $knife.z_index)
+#		print("$Shadow.z_index = ", $Shadow.z_index)
+	
 		
 
 

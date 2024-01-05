@@ -28,6 +28,8 @@ func check_spawn_point():
 	return point
 
 func _ready():
+	print(SCREEN_WIDTH)
+	print(SCREEN_HEIGHT)
 	game_over_layer.visible = false
 	# generate random positions for rocks, instantiate rocks
 	for i in range(rock_count_on_start):
@@ -83,6 +85,10 @@ func _process(delta):
 			check_child_position(obj)
 	else:
 		game_over_layer.visible = true
+		
+		
+#	if !Utils.running:
+#		print("$GAMEOVER/blackscreen.z_index = ", $GAMEOVER/blackscreen.z_index)
 
 
 func _on_restart_pressed():
