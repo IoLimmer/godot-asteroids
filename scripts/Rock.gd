@@ -25,6 +25,8 @@ func start(_position, _rotation, _scale, _speed, _level):
 	level = _level
 	var rng = RandomNumberGenerator.new()
 	sprite_rotation_speed = rng.randf_range(1.0, 5.0)
+	self.add_to_group("wraparound")
+	self.add_to_group("potatoes")
 
 func _process(delta):
 	if Utils.running:
@@ -46,7 +48,6 @@ func spawn_debris():
 		rock.start(rock_position, rock_rotation, rock_scale, rock_speed, rock_level)
 		get_parent().add_child(rock)
 		rocks.append(rock)
-		rock.add_to_group("wraparound")
 
 func animate():
 	$RockShadow.global_position = self.global_position + Vector2(-5, 5)

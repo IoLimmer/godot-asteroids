@@ -8,7 +8,7 @@ var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_he
 
 var Rock = preload("res://scenes/objects/rock.tscn")
 #@onready var Player = get_node("./Player")
-var rock_count_on_start = 10
+var rock_count_on_start = Utils.rock_count_on_start
 var rocks = []
 
 var Player = preload("res://scenes/objects/player.tscn")
@@ -76,8 +76,25 @@ func check_child_position(child):
 	elif child.position.y < 0 - sprite_dimensions.y/2:
 		child.position.y += SCREEN_HEIGHT + sprite_dimensions.y
 
+func check_potato_count():
+	var potatoes = get_tree().get_nodes_in_group("potatoes")
+#	print(potatoes.size())
+#	print(rocks.size())
+	if potatoes.size() == 0:
+		Utils.running = false
+		
+func check_player_count():
+		# delete old players in player group
+	var old_players = get_tree().get_nodes_in_group("player")
+	if old_players.size() > 1:
+		for i in old_players:
+			i.queue_free()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+#	print(get_tree().get_nodes_in_group("player").size())
+	check_potato_count()
+	check_player_count()
 	if Utils.running:
 		objs_to_wraparound = get_tree().get_nodes_in_group("wraparound")
 		# in asteroids, if an object moves off one side of the screen, it reappears on the other
@@ -94,6 +111,7 @@ func _process(delta):
 func _on_restart_pressed():
 #	if !Utils.running:
 	Utils.reset()
+	print(get_tree().get_nodes_in_group("player"))
 #	Utils.running = true
 	get_tree().reload_current_scene()
 	$GAMEOVER.visible = false

@@ -37,7 +37,9 @@ func start(invincible_setter, parent):
 	$Shadow.rotation_degrees = -90
 	self.find_child("AnimatedSprite2D").play("idle_down")
 	self.add_to_group("wraparound")
+	
 	self.add_to_group("player")
+
 	
 	parent.add_child(self)
 #	print("RESPAWN")
