@@ -14,6 +14,7 @@ var rocks = []
 var Player = preload("res://scenes/objects/player.tscn")
 
 @onready var game_over_layer = get_node("GAMEOVER")
+var game_over_play = true
 @onready var player_node = get_node("Player")
 
 
@@ -28,8 +29,8 @@ func check_spawn_point():
 	return point
 
 func _ready():
-	print(SCREEN_WIDTH)
-	print(SCREEN_HEIGHT)
+#	print(SCREEN_WIDTH)
+#	print(SCREEN_HEIGHT)
 	game_over_layer.visible = false
 	# generate random positions for rocks, instantiate rocks
 	for i in range(rock_count_on_start):
@@ -78,17 +79,15 @@ func check_child_position(child):
 
 func check_potato_count():
 	var potatoes = get_tree().get_nodes_in_group("potatoes")
-#	print(potatoes.size())
-#	print(rocks.size())
 	if potatoes.size() == 0:
 		Utils.running = false
-		
+
 func check_player_count():
-		# delete old players in player group
+	# delete old players in player group
 	var old_players = get_tree().get_nodes_in_group("player")
+	# remove old player from group
 	if old_players.size() > 1:
-		for i in old_players:
-			i.queue_free()
+		old_players[0].queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -102,17 +101,20 @@ func _process(delta):
 			check_child_position(obj)
 	else:
 		game_over_layer.visible = true
+		game_over_sfx()
 		
-		
-#	if !Utils.running:
-#		print("$GAMEOVER/blackscreen.z_index = ", $GAMEOVER/blackscreen.z_index)
+func game_over_sfx():
+	if game_over_layer.visible and game_over_play:
+		$GAMEOVER/GameOver.play()
+		game_over_play = false
 
 
 func _on_restart_pressed():
 #	if !Utils.running:
 	Utils.reset()
-	print(get_tree().get_nodes_in_group("player"))
+#	print(get_tree().get_nodes_in_group("player"))
 #	Utils.running = true
 	get_tree().reload_current_scene()
 	$GAMEOVER.visible = false
-		
+	game_over_play = true
+

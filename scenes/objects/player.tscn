@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://thd8bl6eakes"]
+[gd_scene load_steps=22 format=3 uid="uid://thd8bl6eakes"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_hnk77"]
 [ext_resource type="Texture2D" uid="uid://btxporkektk64" path="res://img/proper/chef/chef0.png" id="2_ij1ek"]
 [ext_resource type="Texture2D" uid="uid://bi0usvpnqf6qx" path="res://img/proper/chef/knife.png" id="3_imcyx"]
+[ext_resource type="AudioStream" uid="uid://dpjhqsjryf0j1" path="res://img/placeholders/SPRITES AND SFX/SFX/BULLET_1.wav" id="4_3oexn"]
 [ext_resource type="Texture2D" uid="uid://bcfgxt3ndwupv" path="res://img/proper/chef/chefshadow.png" id="4_vhkwg"]
 [ext_resource type="Texture2D" uid="uid://dubtqg8msp3mw" path="res://img/proper/chef/chefdead.png" id="5_hwwkf"]
 [ext_resource type="Texture2D" uid="uid://dgtcq8q40p5pw" path="res://img/proper/chef/chefleft0.png" id="6_ja3ax"]
@@ -16,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://df2efcoxv3ukv" path="res://img/proper/chef/chefright2.png" id="14_n2gav"]
 [ext_resource type="Texture2D" uid="uid://dkfb14bftdicj" path="res://img/proper/chef/chefup1.png" id="15_fftbs"]
 [ext_resource type="Texture2D" uid="uid://igfnk6anxxb5" path="res://img/proper/chef/chefup2.png" id="16_r2kj1"]
+[ext_resource type="AudioStream" uid="uid://crttnk11uxcsx" path="res://sfx/GAME_OVER_1.wav" id="18_376ur"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yupbi"]
 atlas = ExtResource("5_hwwkf")
@@ -166,5 +168,14 @@ position = Vector2(16, 0)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.15
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="bullet" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_3oexn")
+volume_db = 0.5
+
+[node name="killed" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("18_376ur")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

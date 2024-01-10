@@ -73,6 +73,12 @@ func shoot():
 	get_tree().root.add_child(b)
 	b.add_to_group("bullets")
 
+	var rng = RandomNumberGenerator.new()
+	var my_random_number = rng.randf_range(-0.2, 0.2)
+	$SFX/bullet.pitch_scale = 1 + my_random_number
+	print($SFX/bullet.pitch_scale)
+	$SFX/bullet.play()
+
 
 func kill(rock_angle):
 	dead = true
@@ -84,6 +90,9 @@ func kill(rock_angle):
 	rotation_direction = 0.0
 	self.velocity = self.transform.x * SPEED
 #	$CollisionShape2D.layer
+
+	# play kill sfx
+	$SFX/killed.play()
 
 	# wait two seconds then despawn
 	
