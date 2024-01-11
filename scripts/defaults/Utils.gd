@@ -4,7 +4,7 @@ extends Node
 const default_score = 0
 const default_lives = 3
 const default_running = true
-const default_rock_count_on_start = 1
+const default_rock_count_on_start = 10
 
 var score
 var lives

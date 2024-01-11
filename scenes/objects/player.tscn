@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_hnk77"]
 [ext_resource type="Texture2D" uid="uid://btxporkektk64" path="res://img/proper/chef/chef0.png" id="2_ij1ek"]
 [ext_resource type="Texture2D" uid="uid://bi0usvpnqf6qx" path="res://img/proper/chef/knife.png" id="3_imcyx"]
-[ext_resource type="AudioStream" uid="uid://dpjhqsjryf0j1" path="res://img/placeholders/SPRITES AND SFX/SFX/BULLET_1.wav" id="4_3oexn"]
+[ext_resource type="AudioStream" uid="uid://dpjhqsjryf0j1" path="res://sfx/BULLET_1.wav" id="4_3oexn"]
 [ext_resource type="Texture2D" uid="uid://bcfgxt3ndwupv" path="res://img/proper/chef/chefshadow.png" id="4_vhkwg"]
 [ext_resource type="Texture2D" uid="uid://dubtqg8msp3mw" path="res://img/proper/chef/chefdead.png" id="5_hwwkf"]
 [ext_resource type="Texture2D" uid="uid://dgtcq8q40p5pw" path="res://img/proper/chef/chefleft0.png" id="6_ja3ax"]

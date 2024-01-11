@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://btxporkektk64" path="res://img/proper/chef/chef0.png" id="6_xne7m"]
 [ext_resource type="Texture2D" uid="uid://5pmy72k2va5k" path="res://img/proper/menu/button_start.png" id="8_3vd7q"]
 [ext_resource type="Script" path="res://scenes/Score.gd" id="8_5a2rt"]
-[ext_resource type="AudioStream" uid="uid://c636ae7s3d74" path="res://img/placeholders/SPRITES AND SFX/SFX/PICKUP_1.wav" id="10_wg5nt"]
+[ext_resource type="AudioStream" uid="uid://c636ae7s3d74" path="res://sfx/PICKUP_1.wav" id="10_wg5nt"]
 [ext_resource type="Script" path="res://scenes/HUD.gd" id="19_wucva"]
 [ext_resource type="FontFile" uid="uid://di6rq1bi33des" path="res://font/m5x7.ttf" id="20_fpet7"]
 

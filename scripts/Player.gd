@@ -74,9 +74,9 @@ func shoot():
 	b.add_to_group("bullets")
 
 	var rng = RandomNumberGenerator.new()
-	var my_random_number = rng.randf_range(-0.2, 0.2)
+	var my_random_number = rng.randfn(0, 0.2)
 	$SFX/bullet.pitch_scale = 1 + my_random_number
-	print($SFX/bullet.pitch_scale)
+#	print($SFX/bullet.pitch_scale)
 	$SFX/bullet.play()
 
 

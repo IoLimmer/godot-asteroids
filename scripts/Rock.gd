@@ -24,7 +24,8 @@ func start(_position, _rotation, _scale, _speed, _level):
 	SPEED = _speed + (randf_range(-1,1) * _speed/3)
 	level = _level
 	var rng = RandomNumberGenerator.new()
-	sprite_rotation_speed = rng.randf_range(1.0, 5.0)
+	sprite_rotation_speed = rng.randfn(0, 3)
+#	sprite_rotation_speed = 0.0
 	self.add_to_group("wraparound")
 	self.add_to_group("potatoes")
 
@@ -33,6 +34,10 @@ func _process(delta):
 		animate()
 		velocity = lerp(velocity, Vector2(1, 0).rotated(self.rotation) * SPEED * delta, LERP)
 		self.position += velocity
+		$RockShadow.rotation_degrees += sprite_rotation_speed
+		$RockSprite.rotation_degrees += sprite_rotation_speed
+#		$CollisionObject2D.rotation_degrees += sprite_rotation_speed
+		$CollisionShape2D.rotation_degrees += sprite_rotation_speed
 	
 func spawn_debris():
 	# instantiate two new smaller rocks
