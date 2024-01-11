@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://thd8bl6eakes"]
+[gd_scene load_steps=23 format=3 uid="uid://thd8bl6eakes"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_hnk77"]
 [ext_resource type="Texture2D" uid="uid://btxporkektk64" path="res://img/proper/chef/chef0.png" id="2_ij1ek"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dkfb14bftdicj" path="res://img/proper/chef/chefup1.png" id="15_fftbs"]
 [ext_resource type="Texture2D" uid="uid://igfnk6anxxb5" path="res://img/proper/chef/chefup2.png" id="16_r2kj1"]
 [ext_resource type="AudioStream" uid="uid://crttnk11uxcsx" path="res://sfx/GAME_OVER_1.wav" id="18_376ur"]
+[ext_resource type="AudioStream" uid="uid://c636ae7s3d74" path="res://sfx/PICKUP_1.wav" id="19_smbfd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yupbi"]
 atlas = ExtResource("5_hwwkf")
@@ -135,7 +136,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vc7rb"]
-size = Vector2(10, 10)
+size = Vector2(14, 14)
 
 [node name="Player" type="CharacterBody2D" groups=["player", "wraparound"]]
 position = Vector2(327, 235)
@@ -161,6 +162,7 @@ sprite_frames = SubResource("SpriteFrames_pt8on")
 animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_vc7rb")
 
 [node name="Muzzle" type="Marker2D" parent="."]
@@ -177,5 +179,8 @@ volume_db = 0.5
 
 [node name="killed" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("18_376ur")
+
+[node name="respawn" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("19_smbfd")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

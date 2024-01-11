@@ -24,7 +24,7 @@ func start(_position, _rotation, _scale, _speed, _level):
 	SPEED = _speed + (randf_range(-1,1) * _speed/3)
 	level = _level
 	var rng = RandomNumberGenerator.new()
-	sprite_rotation_speed = rng.randfn(0, 3)
+	sprite_rotation_speed = rng.randfn(0, (level*2)**2)
 #	sprite_rotation_speed = 0.0
 	self.add_to_group("wraparound")
 	self.add_to_group("potatoes")

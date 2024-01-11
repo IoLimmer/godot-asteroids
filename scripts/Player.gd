@@ -42,12 +42,14 @@ func start(invincible_setter, parent):
 
 	
 	parent.add_child(self)
+	$SFX/respawn.play()
 #	print("RESPAWN")
 #	print("invincible = ", invincible)
 ##	print(get_tree())
 ##	print()
 	await get_tree().create_timer(3.0).timeout
 	invincible = false
+	
 
 
 func get_input():
